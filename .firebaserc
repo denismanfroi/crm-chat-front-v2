@@ -1,0 +1,8 @@
+{
+  "projects": {
+    "prod": "crm-chat-prod",
+    "homolog": "crm-chat-homolog"
+  },
+  "targets": {},
+  "etags": {}
+}
