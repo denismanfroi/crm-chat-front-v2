@@ -6,7 +6,10 @@ defineProps({
   },
 })
 
-const environment = import.meta.env.VITE_ENVIRONMENT;
+import {envData} from '@/utils/utils.js'
+
+const {environment} = envData()
+
 </script>
 
 <template>
