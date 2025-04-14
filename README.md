@@ -77,7 +77,7 @@ npm run project-temp-list
 Ele vai perguntar o nome do canal que desejar deletar.
 
 ```bash
-npm run project-temp
+npm run project-temp-delete
 ```
 ## Suporte
 
