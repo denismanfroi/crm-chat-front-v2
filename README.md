@@ -25,7 +25,7 @@ Para rodar os testes, rode o seguinte comando:
 ### Teste unitário (Vitest)
 
 ```bash
-  npm run test:unit
+npm run test:unit
 ```
 ### Teste End-to-End (Playwright)
 
@@ -51,13 +51,13 @@ Para fazer o deploy desse projeto rode:
 [Link para o site](https://crm-chat-prod.web.app/)
 
 ```bash
-  npm run prod
+npm run prod
 ```
 ### Homologação
 [Link para o site](https://crm-chat-homolog.web.app/)
 
 ```bash
-  npm run homolog
+npm run homolog
 ```
 ## Suporte
 
