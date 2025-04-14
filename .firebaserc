@@ -1,7 +1,7 @@
 {
   "projects": {
-    "prod": "crm-chat-prod",
-    "homolog": "crm-chat-homolog"
+    "default": "crm-chat-prod",
+    "production": "crm-chat-prod"
   },
   "targets": {},
   "etags": {}

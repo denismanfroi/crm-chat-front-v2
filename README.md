@@ -51,13 +51,33 @@ Para fazer o deploy desse projeto rode:
 [Link para o site](https://crm-chat-prod.web.app/)
 
 ```bash
-npm run prod
+npm run deploy
 ```
-### Homologação
-[Link para o site](https://crm-chat-homolog.web.app/)
+
+## Criar projetos temporários (Para testes de QA)
+
+Todos os projetos tem como padrão expirar em 7 dias à partir da sua criação.
+
+### Comando para criar
+
+Ele vai perguntar o nome do projeto temporário. Caso tenha que atualizar, utilize o mesmo comando com o mesmo nome de projeto.
 
 ```bash
-npm run homolog
+npm run project-temp
+```
+
+### Comando para listar todos os projetos temporários
+
+```bash
+npm run project-temp-list
+```
+
+### Comando para deletar um projeto temporário
+
+Ele vai perguntar o nome do canal que desejar deletar.
+
+```bash
+npm run project-temp
 ```
 ## Suporte
 

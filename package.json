@@ -5,9 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "prod": "vite build --mode prod && firebase deploy --only hosting --project prod",
-    "homolog": "vite build --mode homolog && firebase deploy --only hosting --project homolog",
     "build": "vite build",
+    "deploy": "vite build --mode production && firebase deploy --only hosting",
+    "project-temp": "read -p 'Nome do canal temporário: ' channel && firebase hosting:channel:deploy $channel",
+    "project-temp-list": "firebase hosting:channel:list",
+    "project-temp-delete": "read -p 'Nome do canal temporário: ' channel && firebase hosting:channel:delete $channel",
     "preview": "vite preview",
     "test:unit": "vitest",
     "test:e2e": "playwright test",

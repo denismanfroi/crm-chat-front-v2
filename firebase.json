@@ -5,6 +5,9 @@
       "firebase.json",
       "**/.*",
       "**/node_modules/**"
-    ]
+    ],
+    "channelDefaults": {
+      "expires": "14d"
+    }
   }
 }
