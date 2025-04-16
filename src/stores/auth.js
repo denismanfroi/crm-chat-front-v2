@@ -1,6 +1,11 @@
 import { defineStore } from 'pinia'
 import { auth } from '../firebase'
-import { signInWithEmailAndPassword, signOut, onAuthStateChanged } from 'firebase/auth'
+import {
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+  signOut,
+  onAuthStateChanged,
+} from 'firebase/auth'
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 
@@ -16,6 +21,10 @@ export const useAuthStore = defineStore(
       user.value = auth.currentUser
       empresaSelecionada.value = empresaId
       router.push('/dashboard')
+    }
+
+    const signup = async (email, password) => {
+      await createUserWithEmailAndPassword(auth, email, password)
     }
 
     const logout = async () => {
@@ -35,6 +44,7 @@ export const useAuthStore = defineStore(
       user,
       empresaSelecionada,
       login,
+      signup,
       logout,
       init,
     }

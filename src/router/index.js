@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Login from '@/views/LoginView.vue'
+import Cadastro from '@/views/CadastroView.vue'
 import Dashboard from '@/views/DashboardView.vue'
 import { auth } from '@/firebase'
 
@@ -11,6 +12,10 @@ const routes = [
   {
     path: '/login',
     component: Login,
+  },
+  {
+    path: '/cadastrar',
+    component: Cadastro,
   },
   {
     path: '/dashboard',

@@ -4,6 +4,7 @@ import router from './router'
 import { createPinia } from 'pinia'
 import piniaPersistedstate from 'pinia-plugin-persistedstate'
 import { auth } from './firebase'
+import './assets/main.css'
 
 const pinia = createPinia()
 pinia.use(piniaPersistedstate)

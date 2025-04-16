@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <h2>Login</h2>
+  <div class="card-container">
+    <h2>CRM Chat - Login</h2>
     <form @submit.prevent="login">
       <input v-model="email" type="email" placeholder="Email" />
       <input v-model="password" type="password" placeholder="Senha" />
@@ -11,14 +11,21 @@
         </option>
       </select>
       <button type="submit">Entrar</button>
+
+      <br />
+
+      <div>
+        <RouterLink to="/cadastrar">Criar conta</RouterLink>
+      </div>
     </form>
-    <p v-if="error">{{ error }}</p>
+    <p v-if="error" class="error">{{ error }}</p>
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue'
-import { useAuthStore } from '../stores/auth'
+import { useAuthStore } from '@/stores/auth'
+import { RouterLink } from 'vue-router'
 
 const email = ref('')
 const password = ref('')
@@ -27,8 +34,8 @@ const error = ref(null)
 const authStore = useAuthStore()
 
 const empresas = ref([
-  { id: 'empresa_a', nome: 'Empresa A' },
-  { id: 'empresa_b', nome: 'Empresa B' },
+  { id: 'vivara', nome: 'Vivara' },
+  { id: 'aramis', nome: 'Aramis' },
 ])
 
 const login = async () => {
