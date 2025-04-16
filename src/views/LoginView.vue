@@ -4,6 +4,12 @@
     <form @submit.prevent="login">
       <input v-model="email" type="email" placeholder="Email" />
       <input v-model="password" type="password" placeholder="Senha" />
+      <select v-model="selectedCompany">
+        <option disabled value="">Selecione a empresa</option>
+        <option v-for="empresa in empresas" :key="empresa.id" :value="empresa.id">
+          {{ empresa.nome }}
+        </option>
+      </select>
       <button type="submit">Entrar</button>
     </form>
     <p v-if="error">{{ error }}</p>
@@ -12,19 +18,23 @@
 
 <script setup>
 import { ref } from 'vue'
-import { signInWithEmailAndPassword } from 'firebase/auth'
-import { auth } from '../firebase'
-import { useRouter } from 'vue-router'
+import { useAuthStore } from '../stores/auth'
 
 const email = ref('')
 const password = ref('')
+const selectedCompany = ref('')
 const error = ref(null)
-const router = useRouter()
+const authStore = useAuthStore()
+
+const empresas = ref([
+  { id: 'empresa_a', nome: 'Empresa A' },
+  { id: 'empresa_b', nome: 'Empresa B' },
+])
 
 const login = async () => {
   try {
-    await signInWithEmailAndPassword(auth, email.value, password.value)
-    router.push('/dashboard')
+    if (!selectedCompany.value) throw new Error('Selecione uma empresa.')
+    await authStore.login(email.value, password.value, selectedCompany.value)
   } catch (err) {
     error.value = err.message
   }
