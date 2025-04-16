@@ -1,6 +1,10 @@
 import { createRouter, createWebHistory } from 'vue-router'
+
+import GuestLayout from '@/layouts/GuestLayout.vue'
+import LoggedLayout from '@/layouts/LoggedLayout.vue'
+
 import Login from '@/views/LoginView.vue'
-import Cadastro from '@/views/CadastroView.vue'
+import Register from '@/views/CadastroView.vue'
 import Dashboard from '@/views/DashboardView.vue'
 import { auth } from '@/firebase'
 
@@ -10,17 +14,18 @@ const routes = [
     redirect: '/dashboard',
   },
   {
-    path: '/login',
-    component: Login,
+    path: '/',
+    component: GuestLayout,
+    children: [
+      { path: 'login', component: Login },
+      { path: 'register', component: Register },
+    ],
   },
   {
-    path: '/cadastrar',
-    component: Cadastro,
-  },
-  {
-    path: '/dashboard',
-    component: Dashboard,
+    path: '/',
+    component: LoggedLayout,
     meta: { requiresAuth: true },
+    children: [{ path: 'dashboard', component: Dashboard }],
   },
 ]
 
