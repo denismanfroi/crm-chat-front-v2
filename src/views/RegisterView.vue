@@ -2,7 +2,7 @@
   <div class="flow__register">
     <div class="logo">
       <img :src="Logo" alt="CRM Chat" />
-      <Typing />
+      <Typing :words="['Chat', 'Cadastro']" />
     </div>
     <div class="card-container">
       <form @submit.prevent="handleSignup">
@@ -25,7 +25,7 @@ import { ref } from 'vue'
 import { useAuthStore } from '@/stores/auth'
 import { useRouter } from 'vue-router'
 import Logo from '@/assets/logo.svg'
-import Typing from '@/components/TypingLogo.vue'
+import Typing from '@/components/Typing.vue'
 
 // Simulando lista de empresas
 const authStore = useAuthStore()

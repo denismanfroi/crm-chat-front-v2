@@ -2,12 +2,12 @@
   <div class="flow__login">
     <div class="logo">
       <img :src="Logo" alt="CRM Chat" />
-      <Typing />
+      <Typing :words="['Chat', 'Login']" />
     </div>
     <div class="card-container">
       <form @submit.prevent="login">
-        <input v-model="email" type="email" autofocus placeholder="Email" />
-        <input v-model="password" type="password" placeholder="Senha" />
+        <input v-model="email" type="email" autofocus placeholder="Email" required />
+        <input v-model="password" type="password" placeholder="Senha" required />
         <select v-model="selectedCompany">
           <option disabled value="">Selecione a empresa</option>
           <option v-for="empresa in empresas" :key="empresa.id" :value="empresa.id">
@@ -25,7 +25,7 @@
 import { ref } from 'vue'
 import { useAuthStore } from '@/stores/auth'
 import Logo from '@/assets/logo.svg'
-import Typing from '@/components/TypingLogo.vue'
+import Typing from '@/components/Typing.vue'
 
 const email = ref('')
 const password = ref('')
