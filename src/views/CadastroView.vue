@@ -1,21 +1,23 @@
 <template>
-  <div class="card-container">
-    <h2>Criar Conta</h2>
-    <form @submit.prevent="handleSignup">
-      <input type="email" v-model="email" placeholder="Email" required />
-      <input type="password" v-model="password" placeholder="Senha" required />
+  <div class="flow__register">
+    <img :src="Logo" alt="CRM Chat" class="logo" />
+    <div class="card-container">
+      <form @submit.prevent="handleSignup">
+        <input type="email" v-model="email" placeholder="Email" required />
+        <input type="password" v-model="password" placeholder="Senha" required />
 
-      <button type="submit">Cadastrar</button>
+        <button type="submit">Cadastrar</button>
 
-      <p v-if="success" class="success">
-        Cadastro realizado com sucesso! Redirecionando para tela de login
-      </p>
+        <p v-if="success" class="success">
+          Cadastro realizado com sucesso! Redirecionando para tela de login
+        </p>
 
-      <br />
+        <br />
 
-      <RouterLink to="/login">Login</RouterLink>
-    </form>
-    <p v-if="error" class="error">{{ error }}</p>
+        <RouterLink to="/login">Login</RouterLink>
+      </form>
+      <p v-if="error" class="error">{{ error }}</p>
+    </div>
   </div>
 </template>
 
@@ -23,6 +25,7 @@
 import { ref } from 'vue'
 import { useAuthStore } from '@/stores/auth'
 import { RouterLink, useRouter } from 'vue-router'
+import Logo from '@/assets/logo.svg'
 
 // Simulando lista de empresas
 const authStore = useAuthStore()
