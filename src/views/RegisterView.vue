@@ -1,9 +1,12 @@
 <template>
   <div class="flow__register">
-    <img :src="Logo" alt="CRM Chat" class="logo" />
+    <div class="logo">
+      <img :src="Logo" alt="CRM Chat" />
+      <Typing />
+    </div>
     <div class="card-container">
       <form @submit.prevent="handleSignup">
-        <input type="email" v-model="email" placeholder="Email" required />
+        <input type="email" v-model="email" autofocus placeholder="Email" required />
         <input type="password" v-model="password" placeholder="Senha" required />
 
         <button type="submit">Cadastrar</button>
@@ -22,6 +25,7 @@ import { ref } from 'vue'
 import { useAuthStore } from '@/stores/auth'
 import { useRouter } from 'vue-router'
 import Logo from '@/assets/logo.svg'
+import Typing from '@/components/TypingLogo.vue'
 
 // Simulando lista de empresas
 const authStore = useAuthStore()

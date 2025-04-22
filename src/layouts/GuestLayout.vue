@@ -35,12 +35,22 @@
   }
 
   & .logo {
+    display: grid;
     grid-area: logo;
-    max-width: 336px;
+    grid-template-columns: 179px auto;
     width: 100%;
+    z-index: 1;
+
+    & img {
+      max-width: 179px;
+    }
 
     @media (max-width: 747px) {
-      max-width: 280px;
+      grid-template-columns: 120px auto;
+
+      & img {
+        max-width: 120px;
+      }
     }
   }
 
