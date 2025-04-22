@@ -13,6 +13,7 @@
   background-position: center;
   display: grid;
   height: 100dvh;
+  padding: 0 1.4rem;
   place-items: center;
 }
 
@@ -26,10 +27,21 @@
   max-width: 700px;
   width: 100%;
 
+  @media (max-width: 747px) {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      'logo'
+      'card-container';
+  }
+
   & .logo {
     grid-area: logo;
     max-width: 336px;
     width: 100%;
+
+    @media (max-width: 747px) {
+      max-width: 280px;
+    }
   }
 
   & .card-container {
@@ -38,6 +50,11 @@
     grid-area: card-container;
     padding: 3rem;
     width: 100%;
+
+    @media (max-width: 747px) {
+      border-radius: 0 25px 25px 25px;
+      padding: 2rem;
+    }
 
     & form {
       display: flex;

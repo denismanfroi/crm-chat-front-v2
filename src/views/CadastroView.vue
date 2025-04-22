@@ -11,10 +11,6 @@
         <p v-if="success" class="success">
           Cadastro realizado com sucesso! Redirecionando para tela de login
         </p>
-
-        <br />
-
-        <RouterLink to="/login">Login</RouterLink>
       </form>
       <p v-if="error" class="error">{{ error }}</p>
     </div>
@@ -24,7 +20,7 @@
 <script setup>
 import { ref } from 'vue'
 import { useAuthStore } from '@/stores/auth'
-import { RouterLink, useRouter } from 'vue-router'
+import { useRouter } from 'vue-router'
 import Logo from '@/assets/logo.svg'
 
 // Simulando lista de empresas
