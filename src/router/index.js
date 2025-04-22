@@ -22,10 +22,10 @@ const routes = [
     ],
   },
   {
-    path: '/',
+    path: '/dashboard',
     component: LoggedLayout,
     meta: { requiresAuth: true },
-    children: [{ path: 'dashboard', component: Dashboard }],
+    children: [{ path: '', component: Dashboard }],
   },
 ]
 
