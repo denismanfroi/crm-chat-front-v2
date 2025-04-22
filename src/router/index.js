@@ -4,7 +4,7 @@ import GuestLayout from '@/layouts/GuestLayout.vue'
 import LoggedLayout from '@/layouts/LoggedLayout.vue'
 
 import Login from '@/views/LoginView.vue'
-import Register from '@/views/CadastroView.vue'
+import Register from '@/views/RegisterView.vue'
 import Dashboard from '@/views/DashboardView.vue'
 import { auth } from '@/firebase'
 

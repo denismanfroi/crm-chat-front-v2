@@ -81,18 +81,18 @@
       &:hover {
         background-color: var(--orange_hover);
       }
+    }
 
-      & .error {
-        margin-top: 1rem;
-        color: red;
-        font-size: 0.9rem;
-        text-align: center;
-      }
+    & .error {
+      margin-top: 1rem;
+      color: red;
+      font-size: 0.9rem;
+      text-align: center;
+    }
 
-      & .success {
-        color: green;
-        margin-top: 1rem;
-      }
+    & .success {
+      color: green;
+      margin-top: 1rem;
     }
   }
 }
