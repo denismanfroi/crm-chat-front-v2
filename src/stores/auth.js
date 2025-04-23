@@ -58,7 +58,9 @@ export const useAuthStore = defineStore(
       const email = result.user.email
 
       if (!isDomainAllowed(email)) {
-        errorMessage.value = 'Apenas domínios autorizados podem acessar.'
+        await signOut(auth)
+        errorMessage.value =
+          'Domínio sem autorização de acesso. Por favor utilize um domínio de e-mail válido!'
         return
       }
 
@@ -78,7 +80,8 @@ export const useAuthStore = defineStore(
       successMessage.value = null
 
       if (!isDomainAllowed(email)) {
-        errorMessage.value = 'Apenas domínios autorizados podem acessar.'
+        errorMessage.value =
+          'Domínio sem autorização de cadastro. Por favor utilize um domínio de e-mail válido!'
         return
       }
 

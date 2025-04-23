@@ -10,7 +10,7 @@
         <input v-model="password" type="password" placeholder="Senha" required />
 
         <select v-model="selectedCompany" required>
-          <option disabled value="">Selecione a empresa</option>
+          <option disabled value="">Selecione um cliente</option>
           <option v-for="empresa in empresas" :key="empresa.id" :value="empresa.id">
             {{ empresa.nome }}
           </option>
@@ -60,6 +60,7 @@ const handleLogin = async () => {
 
 const handleGoogleLogin = async () => {
   if (!selectedCompany.value) {
+    auth.errorMessage = 'Por favor selecione um cliente'
     return
   }
   try {
