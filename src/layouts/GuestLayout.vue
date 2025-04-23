@@ -93,6 +93,20 @@
       }
     }
 
+    & .social-login {
+      border-top: 1px solid var(--orange_hover);
+      display: grid;
+      margin-top: 30px;
+      padding-top: 30px;
+      place-items: center;
+
+      & button {
+        background-color: var(--orange_hover);
+        display: grid;
+        place-items: center;
+      }
+    }
+
     & .error {
       margin-top: 1rem;
       color: red;

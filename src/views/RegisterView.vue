@@ -11,11 +11,11 @@
 
         <button type="submit">Cadastrar</button>
 
-        <p v-if="success" class="success">
-          Cadastro realizado com sucesso! Redirecionando para tela de login
+        <p v-if="authStore.successMessage" class="success">
+          {{ authStore.successMessage }}
         </p>
       </form>
-      <p v-if="error" class="error">{{ error }}</p>
+      <p v-if="authStore.errorMessage" class="error">{{ authStore.errorMessage }}</p>
     </div>
   </div>
 </template>
@@ -32,15 +32,10 @@ const authStore = useAuthStore()
 const router = useRouter()
 const email = ref('')
 const password = ref('')
-const error = ref('')
-const success = ref(false)
 
 const handleSignup = async () => {
-  error.value = ''
-  success.value = false
   try {
     await authStore.signup(email.value, password.value)
-    success.value = true
     email.value = ''
     password.value = ''
 
@@ -48,7 +43,7 @@ const handleSignup = async () => {
       router.push('/login')
     }, 2000)
   } catch (err) {
-    error.value = err.message
+    error.value = err
   }
 }
 </script>
