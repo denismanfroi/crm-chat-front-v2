@@ -21,11 +21,15 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import { useAuthStore } from '@/stores/auth'
 import { useRouter } from 'vue-router'
 import Logo from '@/assets/logo.svg'
 import Typing from '@/components/Typing.vue'
+
+onMounted(() => {
+  authStore.errorMessage = null
+})
 
 // Simulando lista de empresas
 const authStore = useAuthStore()
@@ -39,11 +43,13 @@ const handleSignup = async () => {
     email.value = ''
     password.value = ''
 
-    setTimeout(() => {
-      router.push('/login')
-    }, 2000)
+    if (!authStore.errorMessage) {
+      setTimeout(() => {
+        router.push('/login')
+      }, 2000)
+    }
   } catch (err) {
-    error.value = err
+    console.log(err)
   }
 }
 </script>
