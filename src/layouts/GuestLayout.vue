@@ -72,11 +72,17 @@
     }
 
     & :where(input, select) {
+      background-color: rgba(255, 255, 255, 0.548);
+      border: none;
       margin-bottom: 1rem;
       padding: 0.75rem;
-      border: 1px solid #ccc;
       border-radius: 5px;
       font-size: 1rem;
+      outline: none;
+
+      &:focus {
+        background-color: white;
+      }
     }
 
     & button {
@@ -87,6 +93,11 @@
       border: none;
       border-radius: 6px;
       cursor: pointer;
+      -webkit-transition: background 0.2s ease-in-out;
+      -moz-transition: background 0.2s ease-in-out;
+      -ms-transition: background 0.2s ease-in-out;
+      -o-transition: background 0.2s ease-in-out;
+      transition: background 0.2s ease-in-out;
 
       &:hover {
         background-color: var(--orange_hover);
@@ -104,19 +115,33 @@
         background-color: var(--orange_hover);
         display: grid;
         place-items: center;
+
+        &:hover {
+          background-color: transparent;
+        }
       }
     }
 
     & .error {
+      background-color: rgba(0, 0, 0, 0.685);
+      border-radius: 4px;
       margin-top: 1rem;
-      color: red;
-      font-size: 0.9rem;
+      color: rgb(212, 1, 1);
+      font-size: 1rem;
+      font-weight: bold;
+      padding: 1rem;
       text-align: center;
     }
 
     & .success {
-      color: green;
+      background-color: rgba(0, 0, 0, 0.685);
+      border-radius: 4px;
       margin-top: 1rem;
+      color: rgb(50, 173, 1);
+      font-size: 1rem;
+      font-weight: bold;
+      padding: 1rem;
+      text-align: center;
     }
   }
 }
