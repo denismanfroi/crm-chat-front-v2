@@ -14,9 +14,8 @@ import { auth } from '@/firebase'
 const routes = [
   {
     path: '/:pathMatch(.*)*',
-    name: 'NotFound',
     component: NotFoundLayout,
-    children: [{ path: '', component: NotFound }],
+    children: [{ path: '', name: 'NotFound', component: NotFound }],
   },
   {
     path: '/',
