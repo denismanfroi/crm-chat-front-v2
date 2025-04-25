@@ -112,12 +112,12 @@
       place-items: center;
 
       & button {
-        background-color: var(--orange_hover);
+        background-color: rgba(255, 255, 255, 0.685);
         display: grid;
         place-items: center;
 
         &:hover {
-          background-color: transparent;
+          background-color: rgb(255, 255, 255);
         }
       }
     }
@@ -126,7 +126,7 @@
       background-color: rgba(0, 0, 0, 0.685);
       border-radius: 4px;
       margin-top: 1rem;
-      color: rgb(212, 1, 1);
+      color: rgb(255, 255, 255);
       font-size: 1rem;
       font-weight: bold;
       padding: 1rem;
