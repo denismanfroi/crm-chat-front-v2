@@ -55,7 +55,7 @@
   }
 
   & .card-container {
-    background: linear-gradient(to bottom, #f6a317 0%, #d98600 100%);
+    background: linear-gradient(135deg, #f6a317 0%, #fc5738 100%);
     border-radius: 0 50px 50px 50px;
     grid-area: card-container;
     padding: 3rem;
@@ -100,7 +100,7 @@
       transition: background 0.2s ease-in-out;
 
       &:hover {
-        background-color: var(--orange_hover);
+        background-color: rgb(39, 39, 39);
       }
     }
 
