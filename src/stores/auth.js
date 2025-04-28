@@ -11,6 +11,7 @@ import {
   GoogleAuthProvider,
   signInWithPopup,
 } from 'firebase/auth'
+import { usersCollection } from '@/stores/collections/users'
 
 export const useAuthStore = defineStore(
   'auth',
@@ -21,6 +22,7 @@ export const useAuthStore = defineStore(
     const errorMessage = ref(null)
     const successMessage = ref(null)
     const loading = ref(true) // novo: controla se o estado do Firebase já carregou
+    const userColab = usersCollection()
 
     // Domínios permitidos
     const allowedDomains = ['crmbonus.com', 'vivara.com.br']
@@ -77,16 +79,23 @@ export const useAuthStore = defineStore(
     }
 
     // Cadastro de novo usuário
-    const signup = async (email, password) => {
+    const signup = async (email, password, name = 'Anonimo', last_name = 'Anonimo') => {
       clearMessages()
       if (!isDomainAllowed(email)) {
         errorMessage.value = 'Apenas domínios autorizados podem acessar.'
         return
       }
       try {
-        await createUserWithEmailAndPassword(auth, email, password)
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password)
+        const user = userCredential.user
+        const uid = user.uid
+
+        userColab.signupUser(uid, name, last_name, email)
+
         successMessage.value = 'Cadastro realizado com sucesso! Faça login.'
-        router.push('/login')
+        setTimeout(() => {
+          router.push('/login')
+        }, 3000)
       } catch (error) {
         console.error(error)
         errorMessage.value = error.message
@@ -138,6 +147,6 @@ export const useAuthStore = defineStore(
     }
   },
   {
-    persist: true, // usa pinia-plugin-persistedstate para salvar no localStorage automaticamente
+    persist: true,
   },
 )

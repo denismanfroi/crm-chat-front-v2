@@ -65,7 +65,7 @@ onMounted(() => {
   display: flex;
   border-right: 2px solid rgba(255, 255, 255, 0.768);
   color: white;
-  font-size: 3.2rem;
+  font-size: 3rem;
   white-space: nowrap;
   margin-left: 16px;
   overflow: hidden;
