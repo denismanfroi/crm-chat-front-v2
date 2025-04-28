@@ -49,7 +49,20 @@ export const useAuthStore = defineStore(
         router.push('/dashboard')
       } catch (error) {
         console.error(error)
-        errorMessage.value = error.message
+        switch (error.code) {
+          case 'auth/user-not-found':
+            errorMessage.value = 'Usuário não encontrado.'
+            break
+          case 'auth/wrong-password':
+            errorMessage.value = 'Senha incorreta.'
+            break
+          case 'auth/invalid-email':
+            errorMessage.value = 'E-mail inválido.'
+            break
+          default:
+            errorMessage.value = 'Erro ao fazer login. Tente novamente.'
+            break
+        }
       }
     }
 
@@ -72,7 +85,20 @@ export const useAuthStore = defineStore(
         router.push('/dashboard')
       } catch (error) {
         console.error(error)
-        errorMessage.value = error.message
+        switch (error.code) {
+          case 'auth/user-not-found':
+            errorMessage.value = 'Usuário não encontrado.'
+            break
+          case 'auth/wrong-password':
+            errorMessage.value = 'Senha incorreta.'
+            break
+          case 'auth/invalid-email':
+            errorMessage.value = 'E-mail inválido.'
+            break
+          default:
+            errorMessage.value = 'Erro ao fazer login. Tente novamente.'
+            break
+        }
       }
     }
 

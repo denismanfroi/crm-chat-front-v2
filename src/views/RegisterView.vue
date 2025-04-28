@@ -27,7 +27,6 @@ import { useRouter } from 'vue-router'
 import Logo from '@/assets/logo.svg'
 import Typing from '@/components/Typing.vue'
 
-// Simulando lista de empresas
 const authStore = useAuthStore()
 const router = useRouter()
 const email = ref('')
