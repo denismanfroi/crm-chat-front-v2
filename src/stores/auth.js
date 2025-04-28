@@ -48,7 +48,7 @@ export const useAuthStore = defineStore(
         successMessage.value = 'Login realizado com sucesso!'
         router.push('/dashboard')
       } catch (error) {
-        console.error(error)
+        console.error(error.code)
         switch (error.code) {
           case 'auth/user-not-found':
             errorMessage.value = 'Usuário não encontrado.'
@@ -59,6 +59,8 @@ export const useAuthStore = defineStore(
           case 'auth/invalid-email':
             errorMessage.value = 'E-mail inválido.'
             break
+          case 'auth/invalid-credential':
+            errorMessage.value = 'E-mail ou senha estão errado, favor verificar.'
           default:
             errorMessage.value = 'Erro ao fazer login. Tente novamente.'
             break
