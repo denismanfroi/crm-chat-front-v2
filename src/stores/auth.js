@@ -20,7 +20,7 @@ export const useAuthStore = defineStore(
     const router = useRouter()
     const errorMessage = ref(null)
     const successMessage = ref(null)
-    const loading = ref(true) // novo: controla se o estado do Firebase já carregou
+    const loading = ref(true)
 
     // Domínios permitidos
     const allowedDomains = ['crmbonus.com', 'vivara.com.br']
@@ -138,6 +138,6 @@ export const useAuthStore = defineStore(
     }
   },
   {
-    persist: true, // usa pinia-plugin-persistedstate para salvar no localStorage automaticamente
+    persist: true,
   },
 )

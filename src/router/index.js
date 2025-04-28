@@ -47,8 +47,6 @@ router.beforeEach((to, from, next) => {
   const requiresAuth = to.meta.requiresAuth
   const isAuthenticated = authStore.isLoggedIn
 
-  console.log(isAuthenticated)
-
   if (requiresAuth && !isAuthenticated) {
     next({ name: 'Login' }) // Redireciona para login se não está logado
   } else if (isAuthenticated && (to.name === 'Login' || to.name === 'Register')) {

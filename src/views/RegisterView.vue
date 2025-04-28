@@ -49,8 +49,8 @@ const handleSignup = async () => {
         router.push('/login')
       }, 2000)
     }
-  } catch (err) {
-    console.log(err)
+  } catch (error) {
+    console.log(error)
   }
 }
 </script>

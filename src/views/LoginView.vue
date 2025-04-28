@@ -38,6 +38,7 @@ import Typing from '@/components/Typing.vue'
 
 onMounted(() => {
   auth.errorMessage = null
+  auth.successMessage = null
 })
 
 const auth = useAuthStore()
@@ -53,8 +54,8 @@ const empresas = ref([
 const handleLogin = async () => {
   try {
     await auth.login(email.value, password.value, selectedCompany.value)
-  } catch (err) {
-    console.error('Erro ao logar:', err)
+  } catch (error) {
+    console.error('Erro ao logar:', error)
   }
 }
 
@@ -65,8 +66,8 @@ const handleGoogleLogin = async () => {
   }
   try {
     await auth.loginWithGoogle(selectedCompany.value)
-  } catch (err) {
-    console.error('Erro ao logar:', err)
+  } catch (error) {
+    console.error('Erro ao logar:', error)
   }
 }
 </script>
