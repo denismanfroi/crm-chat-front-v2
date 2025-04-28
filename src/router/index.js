@@ -9,7 +9,7 @@ import Register from '@/views/RegisterView.vue'
 import Dashboard from '@/views/DashboardView.vue'
 import NotFound from '@/views/NotFoundView.vue'
 
-import { auth } from '@/firebase'
+import { useAuthStore } from '@/stores/auth'
 
 const routes = [
   {
@@ -25,15 +25,15 @@ const routes = [
     path: '/',
     component: GuestLayout,
     children: [
-      { path: 'login', component: Login },
-      { path: 'register', component: Register },
+      { path: 'login', name: 'Login', component: Login },
+      { path: 'register', name: 'Register', component: Register },
     ],
   },
   {
     path: '/dashboard',
     component: LoggedLayout,
     meta: { requiresAuth: true },
-    children: [{ path: '', component: Dashboard }],
+    children: [{ path: '', name: 'Dashboard', component: Dashboard }],
   },
 ]
 
@@ -42,15 +42,19 @@ const router = createRouter({
   routes,
 })
 
-// Proteção de rota
 router.beforeEach((to, from, next) => {
-  const user = auth.currentUser
-  const requiresAuth = to.matched.some((record) => record.meta.requiresAuth)
+  const authStore = useAuthStore()
+  const requiresAuth = to.meta.requiresAuth
+  const isAuthenticated = authStore.isLoggedIn
 
-  if (requiresAuth && !user) {
-    next('/login')
+  console.log(isAuthenticated)
+
+  if (requiresAuth && !isAuthenticated) {
+    next({ name: 'Login' }) // Redireciona para login se não está logado
+  } else if (isAuthenticated && (to.name === 'Login' || to.name === 'Register')) {
+    next({ name: 'Dashboard' }) // Já logado tentando acessar login ou registro
   } else {
-    next()
+    next() // Continua normalmente
   }
 })
 

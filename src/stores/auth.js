@@ -1,5 +1,8 @@
+// stores/auth.js
 import { defineStore } from 'pinia'
-import { auth } from '../firebase'
+import { ref, computed } from 'vue'
+import { useRouter } from 'vue-router'
+import { auth } from '@/firebase'
 import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
@@ -8,8 +11,6 @@ import {
   GoogleAuthProvider,
   signInWithPopup,
 } from 'firebase/auth'
-import { ref } from 'vue'
-import { useRouter } from 'vue-router'
 
 export const useAuthStore = defineStore(
   'auth',
@@ -19,9 +20,13 @@ export const useAuthStore = defineStore(
     const router = useRouter()
     const errorMessage = ref(null)
     const successMessage = ref(null)
+    const loading = ref(true) // novo: controla se o estado do Firebase já carregou
 
     // Domínios permitidos
     const allowedDomains = ['crmbonus.com', 'vivara.com.br']
+
+    // Computed getter
+    const isLoggedIn = computed(() => !!user.value)
 
     // Função para verificar se o domínio é permitido
     const isDomainAllowed = (email) => {
@@ -29,11 +34,9 @@ export const useAuthStore = defineStore(
       return allowedDomains.includes(domain)
     }
 
-    // Login com e-mail e senha
+    // Login com email e senha
     const login = async (email, password, empresaId) => {
-      errorMessage.value = null
-      successMessage.value = null
-
+      clearMessages()
       if (!isDomainAllowed(email)) {
         errorMessage.value = 'Apenas domínios autorizados podem acessar.'
         return
@@ -42,67 +45,81 @@ export const useAuthStore = defineStore(
         await signInWithEmailAndPassword(auth, email, password)
         user.value = auth.currentUser
         empresaSelecionada.value = empresaId
+        successMessage.value = 'Login realizado com sucesso!'
         router.push('/dashboard')
       } catch (error) {
         console.error(error)
-        errorMessage.value = error
+        errorMessage.value = error.message
       }
     }
 
     // Login com Google
     const loginWithGoogle = async (empresaId) => {
+      clearMessages()
       const provider = new GoogleAuthProvider()
-      errorMessage.value = null
-      successMessage.value = null
-      const result = await signInWithPopup(auth, provider)
-      const email = result.user.email
-
-      if (!isDomainAllowed(email)) {
-        errorMessage.value = 'Apenas domínios autorizados podem acessar.'
-        return
-      }
-
       try {
-        empresaSelecionada.value = empresaId
+        const result = await signInWithPopup(auth, provider)
+        const email = result.user.email
+
+        if (!isDomainAllowed(email)) {
+          errorMessage.value = 'Apenas domínios autorizados podem acessar.'
+          return
+        }
+
         user.value = result.user
+        empresaSelecionada.value = empresaId
+        successMessage.value = 'Login realizado com sucesso via Google!'
         router.push('/dashboard')
       } catch (error) {
         console.error(error)
-        errorMessage.value = error
+        errorMessage.value = error.message
       }
     }
 
-    // Cadastro de usuário
+    // Cadastro de novo usuário
     const signup = async (email, password) => {
-      errorMessage.value = null
-      successMessage.value = null
-
+      clearMessages()
       if (!isDomainAllowed(email)) {
         errorMessage.value = 'Apenas domínios autorizados podem acessar.'
         return
       }
-
       try {
         await createUserWithEmailAndPassword(auth, email, password)
-        successMessage.value = 'Cadastro realizado com sucesso!'
+        successMessage.value = 'Cadastro realizado com sucesso! Faça login.'
+        router.push('/login')
       } catch (error) {
-        errorMessage.value = error
+        console.error(error)
+        errorMessage.value = error.message
       }
     }
 
     // Logout
     const logout = async () => {
-      await signOut(auth)
-      user.value = null
-      empresaSelecionada.value = null
-      router.push('/login')
+      try {
+        await signOut(auth)
+        user.value = null
+        empresaSelecionada.value = null
+        successMessage.value = 'Logout realizado!'
+        router.push('/login')
+      } catch (error) {
+        console.error(error)
+        errorMessage.value = error.message
+      }
     }
 
-    // Inicializa o estado de autenticação
+    // Função de inicialização
     const init = () => {
+      loading.value = true
       onAuthStateChanged(auth, (firebaseUser) => {
         user.value = firebaseUser
+        loading.value = false
       })
+    }
+
+    // Limpa mensagens de erro/sucesso
+    const clearMessages = () => {
+      errorMessage.value = null
+      successMessage.value = null
     }
 
     return {
@@ -113,11 +130,14 @@ export const useAuthStore = defineStore(
       signup,
       logout,
       init,
+      isLoggedIn,
+      loading,
       errorMessage,
       successMessage,
+      clearMessages,
     }
   },
   {
-    persist: true,
+    persist: true, // usa pinia-plugin-persistedstate para salvar no localStorage automaticamente
   },
 )

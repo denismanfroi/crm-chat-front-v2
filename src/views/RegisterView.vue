@@ -27,15 +27,16 @@ import { useRouter } from 'vue-router'
 import Logo from '@/assets/logo.svg'
 import Typing from '@/components/Typing.vue'
 
-onMounted(() => {
-  authStore.errorMessage = null
-})
-
 // Simulando lista de empresas
 const authStore = useAuthStore()
 const router = useRouter()
 const email = ref('')
 const password = ref('')
+
+onMounted(() => {
+  authStore.errorMessage = null
+  authStore.successMessage = null
+})
 
 const handleSignup = async () => {
   try {
