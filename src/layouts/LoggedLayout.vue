@@ -1,6 +1,13 @@
 <script setup>
 import LogoCRMBonus from '@/assets/logo-crm-chat.svg'
 import Typing from '@/components/Typing.vue'
+import { ref } from 'vue'
+import { useAuthStore } from '../stores/auth'
+
+const authStore = useAuthStore()
+
+const listWords = ref(['Chat'])
+const newListWords = ref([...listWords.value, authStore.empresaSelecionada])
 </script>
 
 <template>
@@ -8,7 +15,12 @@ import Typing from '@/components/Typing.vue'
     <section class="menu">
       <div class="box-logo">
         <img :src="LogoCRMBonus" alt="Logo CRM Bonus" />
-        <Typing :words="['Chat', 'Dashboard']" :fontSize="1.4" />
+        <Typing
+          v-if="authStore.empresaSelecionada !== null"
+          :words="newListWords"
+          :fontSize="1.4"
+        />
+        <Typing v-else :words="listWords" :fontSize="1.4" />
       </div>
     </section>
 
@@ -24,6 +36,11 @@ import Typing from '@/components/Typing.vue'
 
 <style scoped>
 .logged-container {
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.5)),
+    url('https://cdn.prod.website-files.com/646b6f3bf6907682fc10812f/66954be6b7427a772916d5f5_663d1f9fd45bf4919cc2004c_site%20crm%201920x1080%20preto%20final.webp');
+  background-size: cover;
+  background-position: center;
   display: grid;
   grid-template-areas: 'menu menu_internal_page content';
   grid-template-columns: auto auto 1fr;
@@ -39,11 +56,6 @@ import Typing from '@/components/Typing.vue'
   }
 
   & .menu {
-    background-image:
-      linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.5)),
-      url('https://cdn.prod.website-files.com/646b6f3bf6907682fc10812f/66954be6b7427a772916d5f5_663d1f9fd45bf4919cc2004c_site%20crm%201920x1080%20preto%20final.webp');
-    background-size: cover;
-    background-position: right;
     grid-area: menu;
     max-width: 300px;
 
@@ -58,13 +70,13 @@ import Typing from '@/components/Typing.vue'
   }
 
   & .menu_internal_page {
-    background-color: rgb(27, 27, 27);
+    background-color: rgba(36, 36, 36, 0.6);
     grid-area: menu_internal_page;
     max-width: 340px;
   }
 
   & .content {
-    background-color: rgb(58, 58, 58);
+    background-color: rgba(58, 58, 58, 0.6);
     grid-area: content;
   }
 }

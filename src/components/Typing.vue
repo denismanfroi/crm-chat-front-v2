@@ -75,6 +75,7 @@ onMounted(() => {
   width: fit-content;
   animation: blink-caret 0.7s step-end infinite;
   z-index: 2;
+  text-transform: capitalize;
 
   @media (max-width: 747px) {
     font-size: 2rem;
