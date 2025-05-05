@@ -3,11 +3,26 @@ import LogoCRMBonus from '@/assets/logo-crm-chat.svg'
 import Typing from '@/components/Typing.vue'
 import { ref } from 'vue'
 import { useAuthStore } from '../stores/auth'
+import { RouterLink } from 'vue-router'
 
 const authStore = useAuthStore()
-
 const listWords = ref(['Chat'])
 const newListWords = ref([...listWords.value, authStore.empresaSelecionada])
+
+const menus = {
+  default: [
+    { label: 'Bate-papo', isActive: true },
+    { label: 'Painel', isActive: true },
+    { label: 'Automações', isActive: true },
+    { label: 'Transmissão', isActive: true },
+    { label: 'Contatos', isActive: true },
+    { label: 'Desenvolvedor', isActive: true },
+  ],
+  user: [
+    { label: 'config', isActive: true },
+    { label: 'deslogar', isActive: false },
+  ],
+}
 </script>
 
 <template>
@@ -21,6 +36,24 @@ const newListWords = ref([...listWords.value, authStore.empresaSelecionada])
           :fontSize="1.4"
         />
         <Typing v-else :words="listWords" :fontSize="1.4" />
+      </div>
+
+      <div v-for="(menu, key) in menus" :key="key">
+        <template v-if="key === 'default'">
+          <div class="box-menu">
+            <RouterLink
+              v-for="item in menu.filter((i) => i.isActive)"
+              :key="item.label"
+              to="/dashboard"
+            >
+              {{ item.label }}
+            </RouterLink>
+          </div>
+        </template>
+      </div>
+
+      <div class="box-user">
+        <p>Denis Manfroi</p>
       </div>
     </section>
 
@@ -61,10 +94,33 @@ const newListWords = ref([...listWords.value, authStore.empresaSelecionada])
 
     & .box-logo {
       align-items: center;
+      border-bottom: 1px dashed rgba(102, 102, 102, 0.6);
       display: flex;
+      margin-bottom: 30px;
+      padding-bottom: 30px;
 
       & img {
         max-width: 80px;
+      }
+    }
+
+    & .box-menu {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+
+      & a {
+        background-color: rgba(58, 58, 58, 0.6);
+        border: 1px solid rgba(102, 102, 102, 0.6);
+        border-radius: 0.8rem;
+        color: white;
+        font-size: 0.9rem;
+        padding: 0.6rem;
+        text-decoration: none;
+
+        &:hover {
+          border-color: var(--orange);
+        }
       }
     }
   }
