@@ -1,5 +1,5 @@
 <template>
-  <div class="typing">{{ displayedText }}</div>
+  <div class="typing" :style="{ fontSize: `${fontSize}rem` }">{{ displayedText }}</div>
 </template>
 
 <script setup>
@@ -21,6 +21,10 @@ const props = defineProps({
   pauseDelay: {
     type: Number,
     default: 2000,
+  },
+  fontSize: {
+    type: Number,
+    default: 3.2,
   },
 })
 
@@ -65,7 +69,6 @@ onMounted(() => {
   display: flex;
   border-right: 2px solid rgba(255, 255, 255, 0.768);
   color: white;
-  font-size: 3.2rem;
   white-space: nowrap;
   margin-left: 16px;
   overflow: hidden;
