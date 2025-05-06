@@ -16,6 +16,8 @@ export const useAuthStore = defineStore(
   'auth',
   () => {
     const user = ref(null)
+    const userName = ref('')
+    const userPhoto = ref(null)
     const empresaSelecionada = ref(null)
     const router = useRouter()
     const errorMessage = ref(null)
@@ -75,6 +77,8 @@ export const useAuthStore = defineStore(
       try {
         const result = await signInWithPopup(auth, provider)
         const email = result.user.email
+        const name = result.user.displayName
+        const photo = result.user.photoURL
 
         if (!isDomainAllowed(email)) {
           errorMessage.value = 'Apenas domínios autorizados podem acessar.'
@@ -83,6 +87,8 @@ export const useAuthStore = defineStore(
 
         user.value = result.user
         empresaSelecionada.value = empresaId
+        userName.value = name
+        userPhoto.value = photo
         successMessage.value = 'Login realizado com sucesso via Google!'
         router.push('/dashboard')
       } catch (error) {
@@ -152,6 +158,8 @@ export const useAuthStore = defineStore(
 
     return {
       user,
+      userName,
+      userPhoto,
       empresaSelecionada,
       login,
       loginWithGoogle,

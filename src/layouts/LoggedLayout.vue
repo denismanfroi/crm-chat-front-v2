@@ -1,6 +1,5 @@
 <script setup>
 import LogoCRMBonus from '@/assets/logo-crm-chat.svg'
-import iconBatePapo from '@/assets/icon-bate-papo.svg'
 import Typing from '@/components/Typing.vue'
 import { ref } from 'vue'
 import { useAuthStore } from '../stores/auth'
@@ -79,15 +78,28 @@ const menus = {
       </div>
 
       <div class="box-user">
-        <p>Denis Manfroi</p>
+        <div class="_info">
+          <img :src="authStore.userPhoto" alt="" class="user-photo" />
+          <div>
+            <p class="user-name">{{ authStore.userName }}</p>
+            <!-- <p class="user-email">{{ authStore.user.email }}</p> -->
+          </div>
+        </div>
+        <button @click="authStore.logout">
+          <img
+            src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzA2IiBoZWlnaHQ9IjMwNiIgdmlld0JveD0iMCAwIDMwNiAzMDYiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxnIGNsaXAtcGF0aD0idXJsKCNjbGlwMF8xMF8zNSkiPgo8cGF0aCBkPSJNNjYuMyAwQzI5LjkyMjggMCAwIDI5LjkyMjggMCA2Ni4zVjIzOS43QzAgMjc2LjA3NyAyOS45MjI4IDMwNiA2Ni4zIDMwNkgxNTMuODA1QzE4Ny41OTUgMzA2IDIxNS44IDI4MC4xNzcgMjE5LjY0MyAyNDcuMzVIMTc4LjIxMkMxNzUuMDk0IDI1Ny44ODcgMTY1LjU5OSAyNjUuMiAxNTMuODA1IDI2NS4ySDY2LjNDNTEuODIwMiAyNjUuMiA0MC44IDI1NC4xOCA0MC44IDIzOS43VjY2LjNDNDAuOCA1MS44MjAyIDUxLjgyMDIgNDAuOCA2Ni4zIDQwLjhIMTUzLjgwNUMxNjUuNTk5IDQwLjggMTc1LjA5NCA0OC4xMTMzIDE3OC4yMTIgNTguNjVIMjE5LjY0M0MyMTUuOCAyNS44MjI5IDE4Ny41OTUgMCAxNTMuODA1IDBINjYuM1oiIGZpbGw9IiNGQUQwOEEiLz4KPHBhdGggZD0iTTI0My4yIDkxLjc5OTZDMjQwLjUyMSA5MS43OTk0IDIzNy44NjkgOTIuMzI3IDIzNS4zOTMgOTMuMzUyMUMyMzIuOTE4IDk0LjM3NzIgMjMwLjY2OSA5NS44Nzk4IDIyOC43NzUgOTcuNzc0MUMyMjYuODggOTkuNjY4NSAyMjUuMzc4IDEwMS45MTcgMjI0LjM1MiAxMDQuMzkzQzIyMy4zMjcgMTA2Ljg2OCAyMjIuNzk5IDEwOS41MiAyMjIuNzk5IDExMi4yQzIyMi43OTkgMTE0Ljg3OSAyMjMuMzI3IDExNy41MzEgMjI0LjM1MiAxMjAuMDA3QzIyNS4zNzggMTIyLjQ4MiAyMjYuODggMTI0LjczMSAyMjguNzc1IDEyNi42MjVMMjM0Ljc0OSAxMzIuNkg4My41MDA2Qzc4LjA5MDIgMTMyLjYgNzIuOTAxMyAxMzQuNzQ5IDY5LjA3NTYgMTM4LjU3NUM2NS4yNDk5IDE0Mi40IDYzLjEwMDYgMTQ3LjU4OSA2My4xMDA2IDE1M0M2My4xMDA2IDE1OC40MSA2NS4yNDk5IDE2My41OTkgNjkuMDc1NiAxNjcuNDI1QzcyLjkwMTMgMTcxLjI1IDc4LjA5MDIgMTczLjQgODMuNTAwNiAxNzMuNEgyMzQuNzQ5TDIyOC43NzUgMTc5LjM3NEMyMjYuODggMTgxLjI2OCAyMjUuMzc4IDE4My41MTcgMjI0LjM1MiAxODUuOTkzQzIyMy4zMjcgMTg4LjQ2OCAyMjIuNzk5IDE5MS4xMiAyMjIuNzk5IDE5My44QzIyMi43OTkgMTk2LjQ3OSAyMjMuMzI3IDE5OS4xMzEgMjI0LjM1MiAyMDEuNjA3QzIyNS4zNzggMjA0LjA4MiAyMjYuODggMjA2LjMzMSAyMjguNzc1IDIwOC4yMjVDMjMwLjY2OSAyMTAuMTE5IDIzMi45MTggMjExLjYyMiAyMzUuMzkzIDIxMi42NDdDMjM3Ljg2OCAyMTMuNjczIDI0MC41MjEgMjE0LjIgMjQzLjIgMjE0LjJDMjQ1Ljg3OSAyMTQuMiAyNDguNTMyIDIxMy42NzMgMjUxLjAwNyAyMTIuNjQ3QzI1My40ODIgMjExLjYyMiAyNTUuNzMxIDIxMC4xMTkgMjU3LjYyNiAyMDguMjI1TDI5NC43NDkgMTcxLjEwMkMyOTguMTExIDE2OS40MTUgMzAwLjk0MSAxNjYuODMxIDMwMi45MjcgMTYzLjYzN0MzMDQuOTEyIDE2MC40NDIgMzA1Ljk3NiAxNTYuNzYxIDMwNiAxNTNDMzA1Ljk5NSAxNDkuMTgxIDMwNC45MTkgMTQ1LjQ0IDMwMi44OTMgMTQyLjIwM0MzMDAuODY3IDEzOC45NjUgMjk3Ljk3MyAxMzYuMzYyIDI5NC41NCAxMzQuNjg4TDI1Ny42MjYgOTcuNzc0MUMyNTUuNzMxIDk1Ljg3OTggMjUzLjQ4MiA5NC4zNzcyIDI1MS4wMDcgOTMuMzUyMUMyNDguNTMyIDkyLjMyNyAyNDUuODc5IDkxLjc5OTQgMjQzLjIgOTEuNzk5NloiIGZpbGw9IiNGNkEzMTciLz4KPC9nPgo8ZGVmcz4KPGNsaXBQYXRoIGlkPSJjbGlwMF8xMF8zNSI+CjxyZWN0IHdpZHRoPSIzMDYiIGhlaWdodD0iMzA2IiBmaWxsPSJ3aGl0ZSIvPgo8L2NsaXBQYXRoPgo8L2RlZnM+Cjwvc3ZnPgo="
+            alt="Sair do sistema"
+          />
+        </button>
       </div>
     </section>
 
     <section class="menu_internal_page">
-      <p>Menu Secondary</p>
+      <p style="color: white">Menu</p>
     </section>
 
     <main class="content">
+      <p style="color: white">Conteúdo</p>
       <router-view />
     </main>
   </div>
@@ -115,6 +127,8 @@ const menus = {
   }
 
   & .menu {
+    display: flex;
+    flex-direction: column;
     grid-area: menu;
     max-width: 300px;
 
@@ -150,6 +164,38 @@ const menus = {
         &:hover {
           border-color: var(--orange);
         }
+
+        & img {
+          max-width: 20px;
+        }
+      }
+    }
+
+    & .box-user {
+      align-items: center;
+      border-top: 1px dashed rgba(102, 102, 102, 0.6);
+      display: flex;
+      justify-content: space-between;
+      margin-top: auto;
+      padding-top: 30px;
+
+      & ._info {
+        align-items: center;
+        color: white;
+        display: flex;
+        gap: 10px;
+
+        & img {
+          border-radius: 100%;
+          height: 30px;
+          width: 30px;
+        }
+      }
+
+      & button {
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
 
         & img {
           max-width: 20px;

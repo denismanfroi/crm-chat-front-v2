@@ -33,7 +33,7 @@ const routes = [
     path: '/dashboard',
     component: LoggedLayout,
     meta: { requiresAuth: true },
-    children: [{ path: '', name: 'Dashboard', component: Dashboard }],
+    // children: [{ path: '', name: 'Dashboard', component: Dashboard }],
   },
 ]
 

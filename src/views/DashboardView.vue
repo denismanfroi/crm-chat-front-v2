@@ -11,6 +11,8 @@ const logoPorEmpresa = {
 }
 
 const logo = logoPorEmpresa[authStore.empresaSelecionada]
+
+console.log(authStore.userPhoto)
 </script>
 
 <template>
@@ -18,6 +20,8 @@ const logo = logoPorEmpresa[authStore.empresaSelecionada]
     <img :src="logo" alt="Logo da empresa" height="50" />
     <h2>Bem-vindo à {{ authStore.empresaSelecionada }}</h2>
     <p>Usuário: {{ authStore.user?.email }}</p>
+    <p>Nome: {{ authStore.userName }}</p>
+    <img :src="authStore.userPhoto" alt="" />
     <button @click="authStore.logout">Sair</button>
   </div>
 </template>
