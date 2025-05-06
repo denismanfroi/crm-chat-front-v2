@@ -48,10 +48,10 @@ const menus = {
   ],
 }
 
+console.log(authStore.userName)
+
 function logout() {
   const alertLogout = confirm('Deseja realmente sair?')
-
-  console.log(alertLogout)
 
   alertLogout && authStore.logout()
 }
@@ -87,9 +87,23 @@ function logout() {
 
       <div class="box-user">
         <div class="_info">
-          <img :src="authStore.userPhoto" alt="" class="user-photo" />
+          <img
+            v-if="authStore.userPhoto !== null"
+            :src="authStore.userPhoto"
+            alt=""
+            class="user-photo"
+          />
+          <img
+            v-else
+            src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzA2IiBoZWlnaHQ9IjMwNiIgdmlld0JveD0iMCAwIDMwNiAzMDYiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxwYXRoIGQ9Ik0yMDYuNjYyIDEwMS4yN0MyMDYuMjc4IDEzMy45MjQgMTgwLjA0OSAxNjAuMTUzIDE0Ny4zOTUgMTYwLjUzN0MxMTQuNzM1IDE2MC45MiA4OC41MDY0IDEzMy4zNDggODguMTI5OSAxMDEuMjdDODcuODg4MSA4MC42NzUyIDU1LjkyODggODAuNjUxMyA1Ni4xNzA4IDEwMS4yN0M1Ni43NTg5IDE1MS4zNTEgOTcuMzEzOCAxOTEuOTA3IDE0Ny4zOTUgMTkyLjQ5NkMxOTcuNDgxIDE5My4wODQgMjM4LjA0MyAxNTAuNDY2IDIzOC42MjEgMTAxLjI3QzIzOC44NjMgODAuNjUxMyAyMDYuOTA0IDgwLjY3NTIgMjA2LjY2MiAxMDEuMjdaIiBmaWxsPSIjRkFEMDhBIi8+CjxwYXRoIGQ9Ik04OC4xMjk4IDk3LjE2NjRDODguNTEzMiA2NC41MTI4IDExNC43NDEgMzguMjgzMiAxNDcuMzk1IDM3Ljg5OThDMTgwLjA1NCAzNy41MTY0IDIwNi4yODQgNjUuMDg4MSAyMDYuNjYxIDk3LjE2NjRDMjA2LjkwNCAxMTcuNzYxIDIzOC44NjMgMTE3Ljc4NSAyMzguNjIxIDk3LjE2NjRDMjM4LjAzMyA0Ny4wODU0IDE5Ny40NzcgNi41MjcwMSAxNDcuMzk1IDUuOTQwNzFDOTcuMzEwMSA1LjM1NDExIDU2Ljc0ODEgNDcuOTcwOSA1Ni4xNzEgOTcuMTY2NEM1NS45Mjg3IDExNy43ODUgODcuODg4NCAxMTcuNzYxIDg4LjEyOTggOTcuMTY2NFoiIGZpbGw9IiNGNkEzMTciLz4KPHBhdGggZD0iTTY2LjQzNjcgMjg2Ljg3M0M2Ni42MzA5IDI2NC41NTQgNzUuMTQ2IDI0My42ODIgOTAuNjAyMyAyMjcuNzExQzEwNi41MDYgMjExLjI3NyAxMjguMjkgMjAyLjU3IDE1MC45MzcgMjAyLjM3M0MxNzMuMTEgMjAyLjE4IDE5NC4zMjcgMjExLjI3NSAyMTAuMDk5IDIyNi41MzhDMjI2LjUzMyAyNDIuNDQxIDIzNS4yMzkgMjY0LjIyNiAyMzUuNDM2IDI4Ni44NzNDMjM1LjYxNiAzMDcuNDcyIDI2Ny41NzUgMzA3LjQ4OSAyNjcuMzk1IDI4Ni44NzNDMjY2Ljg0IDIyMy4wNjUgMjE0Ljc0NiAxNzAuOTY4IDE1MC45MzcgMTcwLjQxM0M4Ny4xMjE5IDE2OS44NTkgMzUuMDI2IDIyMy44OTkgMzQuNDc3MyAyODYuODczQzM0LjI5NzcgMzA3LjQ4OSA2Ni4yNTc0IDMwNy40NzIgNjYuNDM2NyAyODYuODczWiIgZmlsbD0iI0Y2QTMxNyIvPgo8L3N2Zz4K"
+            alt="user"
+          />
           <div>
-            <p class="user-name">{{ authStore.userName }}</p>
+            <p class="user-name">
+              {{
+                authStore.userName === '' ? authStore.user.email.split('@')[0] : authStore.userName
+              }}
+            </p>
             <!-- <p class="user-email">{{ authStore.user.email }}</p> -->
           </div>
         </div>

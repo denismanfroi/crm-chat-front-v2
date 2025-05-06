@@ -132,6 +132,8 @@ export const useAuthStore = defineStore(
       try {
         await signOut(auth)
         user.value = null
+        userName.value = ''
+        userPhoto.value = null
         empresaSelecionada.value = null
         successMessage.value = 'Logout realizado!'
         router.push('/login')
