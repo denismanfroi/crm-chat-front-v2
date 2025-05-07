@@ -14,7 +14,7 @@ import ListChats from '@/components/ListChats.vue'
     </MenuInternalPage>
 
     <div class="_content">
-      <h1>Bate Papo</h1>
+      <h1 style="font-size: 1.4rem">Conteúdo - Bate Papo</h1>
     </div>
   </div>
 </template>

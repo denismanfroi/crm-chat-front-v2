@@ -4,10 +4,10 @@ import MenuInternalPage from '@/components/MenuInternalPage.vue'
 
 <template>
   <div class="page">
-    <MenuInternalPage title="Transmissão" />
+    <MenuInternalPage title="Transmissão" icon="transmissao" />
 
     <div class="_content">
-      <h1>Transmissão</h1>
+      <h1 style="font-size: 1.4rem">Conteúdo - Transmissão</h1>
     </div>
   </div>
 </template>

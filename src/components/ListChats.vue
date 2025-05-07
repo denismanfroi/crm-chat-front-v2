@@ -55,7 +55,7 @@ const messages = [
 <style scoped>
 .chat-card {
   align-items: center;
-  background-color: rgb(63, 63, 63);
+  background-color: rgb(39, 39, 39);
   border-radius: 0.2rem;
   display: flex;
   gap: 16px;

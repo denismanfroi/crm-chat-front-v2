@@ -4,10 +4,10 @@ import MenuInternalPage from '@/components/MenuInternalPage.vue'
 
 <template>
   <div class="page">
-    <MenuInternalPage title="Painel" />
+    <MenuInternalPage title="Painel" icon="painel" />
 
     <div class="_content">
-      <h1>Painel</h1>
+      <h1 style="font-size: 1.4rem">Conteúdo - Painel</h1>
     </div>
   </div>
 </template>

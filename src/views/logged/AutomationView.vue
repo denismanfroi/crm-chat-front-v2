@@ -4,10 +4,10 @@ import MenuInternalPage from '@/components/MenuInternalPage.vue'
 
 <template>
   <div class="page">
-    <MenuInternalPage title="Automação" />
+    <MenuInternalPage title="Automação" icon="automacao" />
 
     <div class="_content">
-      <h1>Automação</h1>
+      <h1 style="font-size: 1.4rem">Conteúdo - Automação</h1>
     </div>
   </div>
 </template>
