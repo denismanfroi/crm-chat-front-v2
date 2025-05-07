@@ -4,9 +4,13 @@ import GuestLayout from '@/layouts/GuestLayout.vue'
 import LoggedLayout from '@/layouts/LoggedLayout.vue'
 import NotFoundLayout from '@/layouts/NotFoundLayout.vue'
 
+// Não logado
 import Login from '@/views/LoginView.vue'
 import Register from '@/views/RegisterView.vue'
-import Dashboard from '@/views/DashboardView.vue'
+
+// Logado
+import Chat from '@/views/logged/ChatView.vue'
+
 import NotFound from '@/views/NotFoundView.vue'
 
 import { useAuthStore } from '@/stores/auth'
@@ -19,7 +23,11 @@ const routes = [
   },
   {
     path: '/',
-    redirect: '/dashboard',
+    redirect: '/dashboard/chat',
+  },
+  {
+    path: '/dashboard',
+    redirect: '/dashboard/chat',
   },
   {
     path: '/',
@@ -30,10 +38,10 @@ const routes = [
     ],
   },
   {
-    path: '/dashboard',
+    path: '/dashboard/chat',
     component: LoggedLayout,
     meta: { requiresAuth: true },
-    // children: [{ path: '', name: 'Dashboard', component: Dashboard }],
+    children: [{ path: '/dashboard/chat', name: 'Chat', component: Chat }],
   },
 ]
 
@@ -50,7 +58,7 @@ router.beforeEach((to, from, next) => {
   if (requiresAuth && !isAuthenticated) {
     next({ name: 'Login' }) // Redireciona para login se não está logado
   } else if (isAuthenticated && (to.name === 'Login' || to.name === 'Register')) {
-    next({ name: 'Dashboard' }) // Já logado tentando acessar login ou registro
+    next({ name: 'Chat' }) // Já logado tentando acessar login ou registro
   } else {
     next() // Continua normalmente
   }
