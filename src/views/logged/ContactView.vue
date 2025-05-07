@@ -4,7 +4,7 @@ import MenuInternalPage from '@/components/MenuInternalPage.vue'
 
 <template>
   <div class="page">
-    <MenuInternalPage />
+    <MenuInternalPage title="Contato" />
 
     <div class="_content">
       <h1>Contato</h1>

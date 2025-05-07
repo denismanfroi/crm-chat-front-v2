@@ -28,11 +28,11 @@ const routes = [
   },
   {
     path: '/',
-    redirect: '/dashboard/batepapo',
+    redirect: '/dashboard',
   },
   {
     path: '/dashboard',
-    redirect: '/dashboard/batepapo',
+    redirect: '/batepapo',
   },
   {
     path: '/',
@@ -43,16 +43,16 @@ const routes = [
     ],
   },
   {
-    path: '/dashboard/batepapo',
+    path: '/dashboard',
     component: LoggedLayout,
     meta: { requiresAuth: true },
     children: [
-      { path: '/dashboard/batepapo', name: 'Chat', component: Chat },
-      { path: '/dashboard/painel', name: 'Painel', component: Panel },
-      { path: '/dashboard/automacao', name: 'Automation', component: Automation },
-      { path: '/dashboard/transmissao', name: 'Transmission', component: Transmission },
-      { path: '/dashboard/contato', name: 'Contact', component: Contact },
-      { path: '/dashboard/desenvolvedor', name: 'Developer', component: Developer },
+      { path: '/batepapo', name: 'Chat', component: Chat },
+      { path: '/painel', name: 'Painel', component: Panel },
+      { path: '/automacao', name: 'Automation', component: Automation },
+      { path: '/transmissao', name: 'Transmission', component: Transmission },
+      { path: '/contato', name: 'Contact', component: Contact },
+      { path: '/desenvolvedor', name: 'Developer', component: Developer },
     ],
   },
 ]

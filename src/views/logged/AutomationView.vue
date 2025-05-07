@@ -4,7 +4,7 @@ import MenuInternalPage from '@/components/MenuInternalPage.vue'
 
 <template>
   <div class="page">
-    <MenuInternalPage />
+    <MenuInternalPage title="Automação" />
 
     <div class="_content">
       <h1>Automação</h1>

@@ -1,10 +1,17 @@
 <script setup>
 import MenuInternalPage from '@/components/MenuInternalPage.vue'
+import SearchChat from '@/components/SearchChat.vue'
+import ListChats from '@/components/ListChats.vue'
 </script>
 
 <template>
   <div class="page">
-    <MenuInternalPage />
+    <MenuInternalPage icon="batePapo" title="Bate Papo">
+      <template #content-menu>
+        <SearchChat />
+        <ListChats />
+      </template>
+    </MenuInternalPage>
 
     <div class="_content">
       <h1>Bate Papo</h1>

@@ -80,7 +80,9 @@ function logout() {
             <RouterLink
               v-for="item in menu.filter((i) => i.isActive)"
               :key="item.label"
-              :to="'/dashboard/' + item.route"
+              :to="item.route"
+              active-class="active"
+              exact
             >
               <img :src="item.icon" alt="" />
               {{ item.label }}
@@ -175,6 +177,10 @@ function logout() {
         font-size: 0.9rem;
         padding: 0.6rem;
         text-decoration: none;
+
+        &.active {
+          border-color: var(--orange);
+        }
 
         &:hover {
           border-color: var(--orange);
