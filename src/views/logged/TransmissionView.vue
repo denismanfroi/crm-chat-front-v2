@@ -7,7 +7,7 @@ import MenuInternalPage from '@/components/MenuInternalPage.vue'
     <MenuInternalPage />
 
     <div class="_content">
-      <h1>Bate Papo</h1>
+      <h1>Transmissão</h1>
     </div>
   </div>
 </template>

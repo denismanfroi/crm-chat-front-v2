@@ -10,6 +10,11 @@ import Register from '@/views/RegisterView.vue'
 
 // Logado
 import Chat from '@/views/logged/ChatView.vue'
+import Panel from '@/views/logged/PanelView.vue'
+import Automation from '@/views/logged/AutomationView.vue'
+import Transmission from '@/views/logged/TransmissionView.vue'
+import Contact from '@/views/logged/ContactView.vue'
+import Developer from '@/views/logged/DeveloperView.vue'
 
 import NotFound from '@/views/NotFoundView.vue'
 
@@ -23,11 +28,11 @@ const routes = [
   },
   {
     path: '/',
-    redirect: '/dashboard/chat',
+    redirect: '/dashboard/batepapo',
   },
   {
     path: '/dashboard',
-    redirect: '/dashboard/chat',
+    redirect: '/dashboard/batepapo',
   },
   {
     path: '/',
@@ -38,10 +43,17 @@ const routes = [
     ],
   },
   {
-    path: '/dashboard/chat',
+    path: '/dashboard/batepapo',
     component: LoggedLayout,
     meta: { requiresAuth: true },
-    children: [{ path: '/dashboard/chat', name: 'Chat', component: Chat }],
+    children: [
+      { path: '/dashboard/batepapo', name: 'Chat', component: Chat },
+      { path: '/dashboard/painel', name: 'Painel', component: Panel },
+      { path: '/dashboard/automacao', name: 'Automation', component: Automation },
+      { path: '/dashboard/transmissao', name: 'Transmission', component: Transmission },
+      { path: '/dashboard/contato', name: 'Contact', component: Contact },
+      { path: '/dashboard/desenvolvedor', name: 'Developer', component: Developer },
+    ],
   },
 ]
 
