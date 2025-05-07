@@ -1,8 +1,13 @@
 <template>
-  <input type="search" name="search-chat" id="search-chat" placeholder="O que deseja buscar?" />
+  <div>
+    <input type="search" name="search-chat" id="search-chat" placeholder="O que deseja buscar?" />
+  </div>
 </template>
 
 <style scoped>
+div {
+  margin-bottom: 30px;
+}
 input[type='search'] {
   border: none;
   border-radius: 0.2rem;
