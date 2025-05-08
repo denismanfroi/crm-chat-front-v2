@@ -6,6 +6,9 @@ import piniaPersistedstate from 'pinia-plugin-persistedstate'
 import { auth } from './firebase'
 import './assets/main.css'
 
+import CrmChatComponents from '@crm-bonus/crmchat-components'
+import '@crm-bonus/crmchat-components/dist/style.css'
+
 const pinia = createPinia()
 pinia.use(piniaPersistedstate)
 
@@ -16,6 +19,7 @@ auth.onAuthStateChanged(() => {
     app = createApp(App)
     app.use(pinia)
     app.use(router)
+    app.use(CrmChatComponents)
     app.mount('#app')
   }
 })

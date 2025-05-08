@@ -10,6 +10,7 @@ import Dashboard from '@/views/DashboardView.vue'
 import NotFound from '@/views/NotFoundView.vue'
 
 import { useAuthStore } from '@/stores/auth'
+import TestView from '@/views/TestView.vue'
 
 const routes = [
   {
@@ -34,6 +35,10 @@ const routes = [
     component: LoggedLayout,
     meta: { requiresAuth: true },
     children: [{ path: '', name: 'Dashboard', component: Dashboard }],
+  },
+  {
+    path: '/test',
+    component: TestView,
   },
 ]
 
